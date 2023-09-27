@@ -16,7 +16,7 @@ class Book{
 }
 
 
-let library = {
+this.library = {
 
     books : [],
     indexOfDisplayedBook:0,
@@ -33,6 +33,7 @@ let library = {
     } ,
 
     displayNewBook(){
+        
         const cards =document.querySelector('div.cards');
         const card = document.createElement('div');
         const addedBook = this.books[this.indexOfDisplayedBook];
@@ -59,11 +60,27 @@ let library = {
         if(addedBook.ifRead == true){
             ifRead.textContent = 'read';
             ifRead.classList.add('read');
+            card.appendChild(ifRead);
         } else{
             ifRead.textContent = 'not read';
-            ifRead.classList.add('not-read');            
+            ifRead.classList.add('not-read');
+            
+            const read =document.createElement('button');
+            read.textContent = 'read';
+            card.appendChild(ifRead);
+            card.appendChild(read);
+
+
+            read.addEventListener('click',function(){
+            addedBook.read();
+            read.setAttribute('style','display:none;');
+            ifRead.textContent = 'read';
+
+            ifRead.classList.remove('not-read');
+            ifRead.classList.add('read');
+        });          
         }
-        card.appendChild(ifRead);
+        
         
         
         cards.appendChild(card);
@@ -73,14 +90,52 @@ let library = {
     
 }
 
+// #################################################################################################
 
-const book1 = new Book('aero','saso',123,false);
-const book2 = new Book('aero','saso',123,false);
-library.addBookToLibrary(book1);
-library.addBookToLibrary(book2);
+//the form control logic 
 
-library.displayNewBook();
-library.displayNewBook();
+function clearFormFields(){
+
+    const authorField= document.querySelector('input#author');
+    authorField.value='';
+    const titleField= document.querySelector('input#title');
+    titleField.value='';
+    const pagesField= document.querySelector('input#pages');
+    pagesField.value='';
+}
+
+let submitButton = document.querySelector('button#submit');
+// submitButton.preventDefault();
+
+submitButton.addEventListener('click' , function(event){
+    event.preventDefault();
+},false);
 
 
+submitButton.addEventListener('click',function(){
+    const authorField= document.querySelector('input#author');
+    let authorName = authorField.value;
 
+    const titleField= document.querySelector('input#title');
+    let titleName = titleField.value;
+    
+    const pagesField= document.querySelector('input#pages');
+    let pagesNo = pagesField.value;
+    
+    const readStatusField = document.querySelector('select#read-status');
+
+    let readStatus = readStatusField.value;
+    let ifRead=false;    
+    if(readStatus ==='read'){
+        ifRead=true;
+        }
+    let newBook = new Book(titleName,authorName,pagesNo,ifRead);
+    window.library.addBookToLibrary(newBook);
+    console.log(window.library);
+    window.library.displayNewBook();
+    clearFormFields();
+
+});
+
+
+// ##################################################################################################

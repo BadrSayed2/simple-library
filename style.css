@@ -11,6 +11,10 @@ body{
     width:97vw
 }
 
+
+/* cards styling */
+/* ################################################################################## */
+
 div.cards{
     width: 100%;
     display: grid;
@@ -55,3 +59,91 @@ div.cards>.card .pages {
 div.cards>.card .not-read {
     color: #f52255;
 }
+
+div.cards>.card button {
+    background-color: #50c068;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 1px 1px 1px 1px #f2f5f5;
+    align-self: flex-end;
+    font-size: 20px;
+}
+
+div.cards>.card button:hover{
+    background-color: rgb(94, 88, 88);
+    box-shadow: 1.5px 1.5px 1.5px 1.5px #f2f5f5;
+    border: 2px solid 50c068;
+
+}
+/* ################################################################################## */
+
+
+/* form styling */
+/* ################################################################################## */
+    form.create-form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        background-color: #f3f4f6;
+        border: 0;
+        margin-top: 30px;
+    }
+
+    form.create-form>p{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 25%;
+    }
+
+
+    form.create-form>p>label{
+        color: rgb(75, 71, 71);
+        font-weight: 700;
+        font-style: italic;
+        flex: 1;
+
+    }
+    
+    form.create-form>p>input {
+        border: 0;
+        color: black;
+        font-size: 18px;
+        padding: 5px;
+        border-radius: 5px;
+        flex: 4;
+    }
+
+    form.create-form>p>input:focus{
+        box-shadow: 0;
+        border: 0;
+    }
+
+    form.create-form select {
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: 500;
+        width: max(30%,300px);
+        font-style: italic;
+
+    }
+
+    form.create-form #submit {
+        color: white;
+        background-color: #50c068;
+        font-size: 22px;
+        padding: 10px;
+        border-radius: 3px;
+
+
+    }
+
+    form.create-form #submit:hover{
+        cursor: pointer;
+    }
+ /* ################################################################################## */
+ 
