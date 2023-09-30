@@ -16,6 +16,10 @@ class Book{
 }
 
 
+// ##################################################################################################
+
+
+
 this.library = {
 
     books : [],
@@ -26,9 +30,6 @@ this.library = {
 
         if(book instanceof Book){
             this.books.push( new Book(book.title , book.author ,book.pages , book.ifRead));
-            return true;
-        } else{
-            return false;
         }
     } ,
 
@@ -90,9 +91,13 @@ this.library = {
     
 }
 
+
+
 // #################################################################################################
 
 //the form control logic 
+
+
 
 function clearFormFields(){
 
