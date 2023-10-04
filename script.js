@@ -97,50 +97,54 @@ this.library = {
 
 //the form control logic 
 
+        const authorField= document.querySelector('input#author');
+        const titleField= document.querySelector('input#title');
+        const pagesField= document.querySelector('input#pages');
+class formController {
+    
+    clearFormFields(){
+  
+        authorField.value='';
+        titleField.value='';
+        pagesField.value='';
+    }
+    
+    static activateButton(){
+        
+        const readStatusField = document.querySelector('select#read-status');
+        const submitButton = document.querySelector('button#submit');
 
 
-function clearFormFields(){
-
-    const authorField= document.querySelector('input#author');
-    authorField.value='';
-    const titleField= document.querySelector('input#title');
-    titleField.value='';
-    const pagesField= document.querySelector('input#pages');
-    pagesField.value='';
+        submitButton.addEventListener('click' , function(event){
+            event.preventDefault();
+        },false);
+        
+        
+        
+        submitButton.addEventListener('click',function(){
+            let authorName = authorField.value;
+        
+            let titleName = titleField.value;
+            
+            let pagesNo = pagesField.value;
+            
+        
+            let readStatus = readStatusField.value;
+            let ifRead=false;    
+            if(readStatus ==='read'){
+                ifRead=true;
+                }
+            let newBook = new Book(titleName,authorName,pagesNo,ifRead);
+            window.library.addBookToLibrary(newBook);
+            console.log(window.library);
+            window.library.displayNewBook();
+            clearFormFields();
+        
+        });
+    }
+    
 }
 
-let submitButton = document.querySelector('button#submit');
-// submitButton.preventDefault();
-
-submitButton.addEventListener('click' , function(event){
-    event.preventDefault();
-},false);
-
-
-submitButton.addEventListener('click',function(){
-    const authorField= document.querySelector('input#author');
-    let authorName = authorField.value;
-
-    const titleField= document.querySelector('input#title');
-    let titleName = titleField.value;
-    
-    const pagesField= document.querySelector('input#pages');
-    let pagesNo = pagesField.value;
-    
-    const readStatusField = document.querySelector('select#read-status');
-
-    let readStatus = readStatusField.value;
-    let ifRead=false;    
-    if(readStatus ==='read'){
-        ifRead=true;
-        }
-    let newBook = new Book(titleName,authorName,pagesNo,ifRead);
-    window.library.addBookToLibrary(newBook);
-    console.log(window.library);
-    window.library.displayNewBook();
-    clearFormFields();
-
-});
-
+formController.activateButton();
 
 // ##################################################################################################
